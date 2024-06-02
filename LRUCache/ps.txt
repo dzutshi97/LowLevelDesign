@@ -1,0 +1,6 @@
+https://github.com/kswap/LRU-Cache/blob/master/src/LruCache.java
+https://www.openmymind.net/High-Concurrency-LRU-Caching/
+
+-- Strategies:
+ Use read write lock for concurrent access, do we really need unique lock per each client id?
+ If an item was recently accessed few times, avoid the costly operation of moving it to front of the queue as it was recently moved

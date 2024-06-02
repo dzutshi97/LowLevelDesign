@@ -1,0 +1,75 @@
+Fair lock:
+
+write lock:
+ *<p>A thread that tries to acquire a fair write lock (non-reentrantly)
+ * will block unless both the read lock and write lock are free (which
+ * implies there are no waiting threads).  (Note that the non-blocking
+ * {@link ReadLock#tryLock()} and {@link WriteLock#tryLock()} methods
+ * do not honor this fair setting and will immediately acquire the lock
+ * if it is possible, regardless of waiting threads.)
+ * </dl>
+
+ //wait for both read and write lock to be released
+
+
+read lock:
+  *<p>A thread that tries to acquire a fair read lock (non-reentrantly)
+  * will block if either the write lock is held, or there is a waiting
+  * writer thread. The thread will not acquire the read lock until
+  * after the oldest currently waiting writer thread has acquired and
+  * released the write lock. Of course, if a waiting writer abandons
+  * its wait, leaving one or more reader threads as the longest waiters
+  * in the queue with the write lock free, then those readers will be
+  * assigned the read lock.
+
+//wait for write lock to release as well as threads scheduled to write to finish
+
+
+Reentrant write lock:
+
+write lock:
+1. Acquire write lock if none of the other thread has this lock
+2. If current thread already has the write lock then increment the count by 1
+3. If this lock is help by other thread, make it wait by entering a scheduling state. Once this lock is released, notify this waiting thread to proceed.
+4. Once lock is acquired, increment the count by 1
+
+  /**
+         * Acquires the write lock.
+         *
+         * <p>Acquires the write lock if neither the read nor write lock
+         * are held by another thread
+         * and returns immediately, setting the write lock hold count to
+         * one.
+         *
+         * <p>If the current thread already holds the write lock then the
+         * hold count is incremented by one and the method returns
+         * immediately.
+         *
+         * <p>If the lock is held by another thread then the current
+         * thread becomes disabled for thread scheduling purposes and
+         * lies dormant until the write lock has been acquired, at which
+         * time the write lock hold count is set to one.
+         */
+
+// wait for this write lock to be released. Does not depend on the read locks
+
+
+read lock:
+
+    /**
+         * Acquires the read lock.
+         *
+         * <p>Acquires the read lock if the write lock is not held by
+         * another thread and returns immediately.
+         *
+         * <p>If the write lock is held by another thread then
+         * the current thread becomes disabled for thread scheduling
+         * purposes and lies dormant until the read lock has been acquired.
+         */
+
+  //wait for write lock to be released
+
+  Links:
+  1. https://jenkov.com/tutorials/java-concurrency/read-write-locks.html
+  2. https://stackoverflow.com/questions/49372668/implementing-a-resource-read-write-lock-in-java
+

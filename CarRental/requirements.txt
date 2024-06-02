@@ -1,0 +1,16 @@
+
+
+PS: https://leetcode.com/discuss/interview-question/object-oriented-design/1144881/flipkart-machine-coding-round-design-car-rental-system
+https://leetcode.com/discuss/interview-question/1750542/phonepe-machine-coding-not-selected
+Beautiful LLD: https://leetcode.com/discuss/interview-question/object-oriented-design/2088654/Vehicle-Rental-System-or-LLD-or-Feedback-welcome
+
+
+codes:
+1 --> https://github.com/subbiah95/VehicleRentalService/tree/master/com/vehicle/rental
+https://github.com/gopalbala/carrental
+https://github.com/sparsh1999/LLD/tree/master/src/main/java/org/example/VechicleRental
+
+
+TODO:
+Book on a time / date
+Check availability taking time slots into consideration

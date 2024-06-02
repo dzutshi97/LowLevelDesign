@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/13671502/java-implement-own-message-queue-threadsafe - beautiful! understanding of wait() & notify/notifyall()
+
+/**
+If the queue is empty and I call remove(),
+ I want to call wait() so that another thread can use the send() method.
+ Respectively, I have to call notifyAll() after every iteration.
+**/
