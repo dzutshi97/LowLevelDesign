@@ -2,7 +2,7 @@ package coding.DFS;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//BackTracking problem !!!!
 public class RatInAMaze {
     static int[][] dirs = new int[][]{{0,1}, {0,-1}, {1,0}, {-1,0}};
     static List<String> ans = new ArrayList<>();
@@ -64,3 +64,4 @@ public class RatInAMaze {
         solve(ip);
     }
 }
+//https://leetcode.com/discuss/interview-question/2073103/rat-in-a-maze-problem
