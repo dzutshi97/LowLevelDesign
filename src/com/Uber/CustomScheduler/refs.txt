@@ -1,0 +1,9 @@
+https://leetcode.com/discuss/interview-question/891551/uber-experienced-2020-machine-coding-round
+
+thread pool executor (same as job scheduler) -
+https://akhiilgupta.medium.com/design-a-multi-threaded-task-scheduler-lld-multi-threaded-construct-eb090c5a8727
+https://vipulpachauri12.medium.com/design-custom-thread-pool-java-617263ee57ec
+https://enginebogie.com/public/charchaa/post/unleash-the-power-of-low-code-and-no-code-development-build-faster-innovate-more/46
+
+All concurrency problems -
+https://enginebogie.com/u/anomaly2104/offerings/PATH/e9522ac1-4e4c-4217-92ba-f691f34c321b
