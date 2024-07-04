@@ -23,7 +23,7 @@ import static coding.DP.Solve.solve;
          Random r = new Random();
 
          //first column - first 2 cells
-         for(int i=0; i<board[0].length; i++) {
+         for(int i=0; i<board.length; i++) {
              int prev = 0;
              int number = r.nextInt(10);
              if (i == 0 || i == 1) {
@@ -36,7 +36,7 @@ import static coding.DP.Solve.solve;
              }
          }
          //first row - first 2 cells
-         for(int i=0; i<board.length;i++){
+         for(int i=0; i<board[0].length;i++){
              int prev = 0;
              int number = r.nextInt(5)+1;
              if( i== 0 || i== 1){
