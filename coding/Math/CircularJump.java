@@ -19,7 +19,8 @@ public class FrogJump {
         int currentPosition = 0;
         int i = 0;
 
-        while (visitedStones.size() < N) { //or should we go till 2n?
+        while (visitedStones.size() < N) { //or should we go till 2n? Ans: Cycle Detection: If visitedStones.add(currentPosition) 
+            //returns false, we detect a cycle, ensuring we don't need to run for 2 * N.
             if (!visitedStones.add(currentPosition)) {
                 // If we revisit a position before visiting all stones, it means we're stuck in a loop
                 return false;
