@@ -2,6 +2,7 @@ package coding.BFS;
 
 import java.util.*;
 //     * Link - https://leetcode.com/discuss/interview-question/518916/google-onsite-frog-in-a-matrix
+// ~= Similar to https://www.geeksforgeeks.org/minimum-steps-reach-target-knight/ (Uber) !!
 public class FrogJumpInMatrix {
     /**
      * Given a 2d array with size n*m, there's some obstacles placed at some points. A frog trying to jump from the beginning point 0,0 to the bottom right point n-1, m-1. Say if a frog can jump maximum k distance a time, what is the minimun steps needed?
