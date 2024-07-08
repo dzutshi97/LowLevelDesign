@@ -19,7 +19,8 @@ public class FrogJumpWithHeight {
     }
 
     private static int solve(int i, int[] height, int[] dp) {
-        if (i == height.length - 1) return dp[i];
+        // Base case: If we are at the end (index N-1), no further cost is needed.
+        if (i == height.length - 1) return 0;
         if (dp[i] != -1) return dp[i];
         
         int oneStep = Integer.MAX_VALUE;
