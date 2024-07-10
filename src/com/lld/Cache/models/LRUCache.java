@@ -70,7 +70,7 @@ public class LRUCache<K,V> implements Cache<K,V>{
     public void evict() {
         lock.writeLock().lock();
         try{
-            Iterator<K> iterator = deque.iterator();
+            Iterator<K> iterator = deque.iterator(); //use iterator instead of for loop to avoid concurrent modification exception
             while(iterator.hasNext()){
                 K key = iterator.next();
                 CacheEntry<V> entry = map.get(key);
