@@ -1,0 +1,6 @@
+How to create fastest & efficient LRU cache in Java - https://medium.com/@udaysagar.2177/fastest-lru-cache-in-java-c22262de42ad
+1) Pack data in memory as closely as possible
+
+2) Combine Map and Doubly Linked List functionality
+
+2) Reduce Garbage Collection time
