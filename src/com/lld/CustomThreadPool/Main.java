@@ -17,6 +17,13 @@ public class Main {
                     System.err.println("Task interrupted: " + e.getMessage());
                 }
             });
+            /**
+             * Lambda Expression as a Runnable: The lambda expression () -> { ... } is an implementation of the Runnable interface.
+             * The Runnable interface has a single method run() that does not take any parameters and returns no result.
+             * The lambda expression you provide essentially defines what the run() method does.
+             * Submitting the Task: When you call threadPool.submit(...), you are passing the lambda expression as a Runnable to the submit() method of your ThreadPool class.
+             *
+             */
         }
         // Give some time for all tasks to finish
         try {
