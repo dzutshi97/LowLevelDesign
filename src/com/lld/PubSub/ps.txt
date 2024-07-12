@@ -1,0 +1,11 @@
+Multitheaded message queue - pubsub
+https://github.com/anomaly2104/low-level-design-messaging-queue-pub-sub
+I recently appeared for an interview in Uber. The round was machine coding round and they asked me to build a system like kafka where we will have topics and multiple publishers and susbcribers should be able to interact with it without one blocking another.
+Idea was to think handle concurrent requests and use multi-threading so that all subscribers can run in parallel.
+
+1. We could have a executor service (thread pool) do publish as well along with subscriber consuming using thread pool
+2. If multiple subscribers need to process each message - there are 2 ways
+    a) Each subscriber when peeks the message on topic, it will increment offset.
+    Once the no of offset is equal to no of subscribers then the message can be removed from queue. -> This is kafka design
+    OR better have just a for loop for each subscriber to consume within the code itself!
+    b) Any one subscriber can poll from qeuee and process it first. -> pub/sub way?
