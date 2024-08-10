@@ -24,14 +24,19 @@ public class ConferenceRoomScheduler {
         for(int room : this.schedules.keySet()){
             canAssign = true;
             TreeSet<int[]> meet = schedules.get(room);
-            int[] ceil = meet.ceiling(curr);
+            int[] ceil = meet.ceiling(curr); //ceiling value calculated based on start time
             /**ceiling() - is used to return the least element in this set greater than or equal to the given element, or null if there is no such element.
              * This operation takes O(log m) time, where m is the number of meetings already scheduled in the TreeSet for the current room.
              **/
-             int[] floor = meet.floor(curr);
+             int[] floor = meet.floor(curr); //floor value calculated based on start time
             /**floor() -  is used to return the greatest element in this set less than or equal to the given element, or null if there is no such element.
              * This operation takes O(log m) time, where m is the number of meetings already scheduled in the TreeSet for the current room.
              **/
+            /**
+             *  (floor)s----------e      s_________e(ciel)
+             *                 s___________e  (curr) false case i.e intersection
+             *
+             */
             if(floor!= null && startTime < floor[1])  canAssign = false;
             if(ceil != null && endTime > ceil[0]) canAssign = false;
             if(canAssign){
