@@ -26,7 +26,7 @@ public class TaskScheduler {
 
 
     public TaskScheduler(int queueSize) {
-//        queue = new PriorityBlockingQueue<>((Task a, Task b) -> a.getScheduledTime() - b.getScheduledTime());
+//        queue = new PriorityBlockingQueue<>((Task a, Task b) -> a.getScheduledTime() - b.getScheduledTime()); UNCOMMENT right?
         queue = new PriorityBlockingQueue<>(queueSize);
         this.lock = new ReentrantLock();
         this.executorService = Executors.newFixedThreadPool(2);
