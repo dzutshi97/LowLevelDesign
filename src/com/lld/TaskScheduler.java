@@ -3,7 +3,16 @@ package com.lld.TaskScheduler;
 import java.util.Comparator;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantLock;
-
+/**
+ * Here's why a blocking queue is essential in a task scheduler:
+ *
+ * 1. Thread Coordination
+ * Producer-Consumer Model: Task schedulers often follow a producer-consumer pattern, where one or more threads (producers) generate tasks and place them into the queue, and one or more threads (consumers) take tasks from the queue to execute them. A blocking queue helps coordinate these threads, ensuring that consumers wait when there are no tasks available and wake up when new tasks arrive.
+ * Automatic Thread Blocking: If a worker thread (consumer) attempts to take a task from the queue but the queue is empty, the thread will automatically block (wait) until a task is available. This prevents the thread from busy-waiting (constantly checking the queue), which is inefficient and wasteful of CPU resources.
+ * 2. Thread Safety
+ * Safe Concurrent Access: Blocking queues are designed to handle concurrent access from multiple threads. This ensures that tasks can be added and removed from the queue without risk of data corruption or race conditions, which is critical in a task scheduler where multiple threads might interact with the queue simultaneously.
+ * No Manual Synchronization: The blocking queue internally handles the complexities of synchronization, so developers don't need to manually manage locks or other synchronization mechanisms. This reduces the chance of errors like deadlocks and makes the code simpler and more maintainable.
+ **/
 public class TaskScheduler {
 
     private final PriorityBlockingQueue<Task> queue;
