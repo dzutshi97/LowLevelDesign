@@ -22,10 +22,10 @@ public class Game {
         for (int i = 0; i < game.players.size(); i++) {
             playerQueue.offer(game.players.get(i));
         }
-        HashMap<Player, Integer> playerPos = new HashMap<>();
+   /**     HashMap<Player, Integer> playerPos = new HashMap<>();
         for(int i=0; i<game.players.size(); i++){
             playerPos.put(game.players.get(i), 1);//initialize all players to starting position!
-        }
+        } */ //Instead- in player constructor have the pos set to 0 by default. no need of using an extra map -> playerPos
 
         while(true){
             Player player = playerQueue.remove();
