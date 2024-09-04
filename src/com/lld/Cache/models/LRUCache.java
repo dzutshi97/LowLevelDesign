@@ -4,6 +4,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+/**
+Why Not Use Synchronized Collections?
+Using traditional synchronized collections like HashMap or LinkedList with explicit synchronization (e.g., using synchronized blocks or methods) 
+would ensure thread safety, but it would also result in poorer performance due to the increased contention on the locks. 
+ConcurrentHashMap and ConcurrentLinkedDeque provide a more efficient way to achieve thread safety with better performance under concurrent access.
+
+Why ConcurrentHashMap?:
+Thread Safety: Unlike a regular HashMap, ConcurrentHashMap allows concurrent access and modifications by multiple threads without requiring explicit synchronization. It achieves this by dividing the map into segments and locking only the necessary segment during updates.
+Performance: It provides better concurrency and performance compared to using a synchronized HashMap, as multiple threads can access different segments of the map simultaneously.
+Non-blocking Reads: In ConcurrentHashMap, reads are typically non-blocking, allowing faster access compared to a synchronized map where all reads and writes are blocking operations.
+
+
+*/
 public class LRUCache<K,V> implements Cache<K,V>{
 
     private final ConcurrentHashMap<K,CacheEntry> map;
