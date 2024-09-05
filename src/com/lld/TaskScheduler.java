@@ -39,7 +39,13 @@ public class TaskScheduler {
     }
 
     public void start(){
-        executorService.execute(() -> { //execute or submit?
+        executorService.execute(() -> { //execute or submit? Ans: execute()
+            /**
+             * Difference between execute() and submit():
+             * execute(): This method is used to execute a Runnable task. It does not return any result or future. If an exception is thrown during the execution, it will propagate to the Thread's UncaughtExceptionHandler.
+             *
+             * submit(): This method is used to submit a Runnable or Callable task. It returns a Future, which allows you to check the result of the task or handle any exceptions thrown during its execution. If you don’t need to track the result of the task or handle exceptions explicitly, you don’t need a Future.
+            */
             while(!Thread.currentThread().isInterrupted()){
                 lock.lock();
                 try {
