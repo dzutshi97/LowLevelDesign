@@ -2,7 +2,13 @@ package coding.DFS;
 
 import java.util.ArrayList;
 import java.util.List;
+
 //BackTracking problem !!!!
+
+/**
+ * Time Complexity: O(3^(m*n)), because on every cell we have to try 3 different directions , as we will not check for the cell from which we have visited in the last move.
+ * Auxiliary Space: O(m*n), Maximum Depth of the recursion tree(auxiliary space).
+ */
 public class RatInAMaze {
     static int[][] dirs = new int[][]{{0,1}, {0,-1}, {1,0}, {-1,0}};
     static List<String> ans = new ArrayList<>();
