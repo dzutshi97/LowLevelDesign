@@ -23,10 +23,10 @@ class DisjointSet{
         }
 
         if(size[ultimateParentOfU] < size[ultimateParentOfV]){
-            parent[ultimateParentOfU] = parent[ultimateParentOfV];
+            parent[ultimateParentOfU] = parent[ultimateParentOfV]; //or better just write ultimateParentOfV
             size[ultimateParentOfV] += size[ultimateParentOfU];
         }else{
-            parent[ultimateParentOfV] = parent[ultimateParentOfU];
+            parent[ultimateParentOfV] = parent[ultimateParentOfU]; //or better just write ultimateParentOfU
             size[ultimateParentOfU] += size[ultimateParentOfV];
         }
 
