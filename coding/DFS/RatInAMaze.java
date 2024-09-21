@@ -29,6 +29,7 @@ public class RatInAMaze {
 //            printAns(ans);
             return;
         }
+//or  L1:    visited[row][col] = true;
 
         for(int[] dir : dirs){
             int newRow = row + dir[0];
@@ -51,11 +52,13 @@ public class RatInAMaze {
                 dirn = dirn + "U";
             }
 
-            visited[newRow][newCol] = true;
+            visited[newRow][newCol] = true; //or instead do L1
             dfs(newRow, newCol, path + dirn,visited,mat);
-            visited[newRow][newCol] = false;
+            visited[newRow][newCol] = false; //or instead do L2
 
         }
+    //or  L2:    visited[row][col] = false;
+
 
     }
 
