@@ -1,6 +1,7 @@
 package coding.DFS;
 
 //TODO: BFS approach. Soln - https://leetcode.com/problems/the-maze/solutions/1141843/java-readable-dfs-explanation-o-nm-time-bonus-bfs/
+// BFS soln coded - https://github.com/dzutshi97/LowLevelDesign/blob/main/coding/BFS/TheMazeBFS.java
 public class TheMaze {
     static int[][] dirs = new int[][]{{0,-1}, {0,1}, {1,0}, {-1,0}};
 
