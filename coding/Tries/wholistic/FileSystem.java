@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 //https://leetcode.com/discuss/interview-question/4279643/atlassian-file-system-design/2422840
+// good implementation here - https://github.com/dzutshi97/LowLevelDesign/blob/main/coding/Atlassian/DesignFileSystem.java
+
 public class FileSystem {
 
     //ls, addContentToFile, readContentFromFile, mv, rm, mkdir, getSize, calcSize
