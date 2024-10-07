@@ -37,5 +37,12 @@ package coding.Google;
  * Output: 114
  * Explanation: We can cut it into 7 pieces if any piece is 114 long, however we can't cut it into 7 pieces if any piece is 115 long.
  */
+
+/**
+ * Time Complexity:
+ * The binary search runs in O(log(max_length)), where max_length is the length of the longest piece of wood.
+ * The canCut function iterates through all the wood pieces, so it takes O(n), where n is the number of wood pieces.
+ * Therefore, the overall time complexity is O(n * log(max_length)).
+ */
 public class CutWood {
 }
