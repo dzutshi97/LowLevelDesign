@@ -3,7 +3,36 @@ package com.Uber.MeetingScheduler;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
+/**
+Question
+Implement a system that can schedule meetings in a predefined set of k conference rooms (numbered 1 to k).
 
+
+We have a method int scheduleMeeting(startTime, endTime) which returns any available room (out of k rooms) during the time range and reserves it. If none is available, return 0.
+
+
+Example:
+3 rooms
+scheduleMeeting called with the below params (with expected output):
+
+
+(5,7) -> 1
+(7,9) -> 1
+(8,12) -> 2
+(10,11) -> 1
+(10,11) -> 3
+(13,14) ->1
+(11,12) -> 1
+(10,15) -> 0 (No room available)
+(14,16) -> 1
+A few points to keep in mind. These are obvious, but still mentioning just in case:
+
+
+The scheduling calls won't come in increasing order of time (as can already be seen in the example above)
+You won't have access to future scheduling calls at the time of scheduling the present call. You need to schedule things on a first-come-first-served basis.
+Intervals are open at the end. So, (5,7), (7,9) can be scheduled in the same room, for instance.
+As mentioned already in the requirement above, we can return any available room (not necessarily the least numbered one
+*/
 public class ConferenceRoomScheduler {
 
     HashMap<Integer, TreeSet<int[]>> schedules;
