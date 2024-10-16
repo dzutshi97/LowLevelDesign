@@ -24,7 +24,7 @@ package com.Uber;
  */
 public class LRUCache {
 
-  class LRUCache {
+
     Node head = new Node(0, 0);
     Node tail = new Node(0, 0);
     Map<Integer, Node> map = new HashMap<>();
@@ -82,7 +82,7 @@ public class LRUCache {
             this.key = key;
             this.value = value;
         }
-    }
+}
 }
 
 //https://leetcode.com/problems/lru-cache/solutions/3334371/java-dll-hashmap-solution/?envType=company&envId=uber&favoriteSlug=uber-three-months
