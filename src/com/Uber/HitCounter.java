@@ -1,102 +1,60 @@
 package com.Uber;
 
-import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.LinkedList;
 
 /**
- * https://leetcode.com/discuss/interview-question/5838801/Uber-SDE-2-or-Phone-screen
- * I had Uber phone screen last week after OA.
  *
+ * LC: Hit Counter.
+ * Issue: If huge amount of hits happened at the same timestamp, this solution will takes too much memory since each element in queue is a single hit.
+ * Efficient soln to avoid JVM overflow -https://leetcode.com/problems/design-hit-counter/solutions/83505/simple-java-solution-with-explanation/comments/629024
  *
- * I was told it was leetcode style problem for this 60-minute interview. At the beginning, interviewer sort of spent 15 minutes to go over the resume / past experience. The rest is for a leetcode medium question.
+ * Idea:
+ * Store count against a timestamp and thus avoid multiple timestamp entries
  *
- *
- * Question: Implement a Counter class that has the following methods:
- *
- *
- * put(number): put the number to the data structure
- * count(number): count the number of times number was put during the last window=5 minutes
- * countAll(): count the number of times any number was put during the last window=5 minutes.
- * Example:
- * At t = 10PM, put(2)
- * At t = 10:02PM, put(2)
- * At t = 10:03PM, put(3)
- * At t = 10:04PM, count(2) should return 2
- * At t = 10:04PM, countAll() should return 3
- * At t = 10:06PM, count(2) should return 1 (the one that was put at 10:02PM)
- * At t = 10:06PM, countAll() should return 2
- *
- *
- * Follow-ups:
- *
- *
- * If you were to write unit tests, what would they be
- * If your code was to be in production, what issues may it cause?
- * I'm going to onsite.
  */
-class Tuple1{
-    int val;
-    long time;
+class HitPair{
+    int time;
+    int count;
 
-    public Tuple1(int val, long time) {
-        this.val = val;
+    public HitPair(int time, int count) {
         this.time = time;
+        this.count = count;
     }
 }
 public class HitCounter {
-    Deque<Tuple1> deque = new ArrayDeque<>();
+    Deque<HitPair> deque;
+    int timeWindow;
 
-    public void put(int no){
-        Tuple1 tuple1 = new Tuple1(no, System.currentTimeMillis());
-        removeOldEntries();
-        deque.addLast(tuple1);
+    public HitCounter() {
+        this.deque = new LinkedList<>();
+        this.timeWindow = 5*60;
     }
-    private void removeOldEntries(){
-            long currentTime = System.currentTimeMillis();
-            // 1 sec = 1000 ms
-            // 1 min = 60 sec
-            // 5 min - 5*60 = 300 secs
-            // 300 secs = 300*1000 = 300,000 millis
-            while(!deque.isEmpty() && (currentTime - deque.peekFirst().time) > 30000){ //300000 is 5 mins, we will take a smaller time for testing in local
-                deque.removeFirst();
-            }
+
+    /** Record a hit.
+     @param timestamp - The current timestamp (in seconds granularity). */
+    public void hit(int timestamp) {
+        removeOldTimestamps(timestamp);
+        if(deque.size()>0 && deque.peekLast().time == timestamp){
+            deque.getLast().count++;
+        }else {
+            deque.addLast(new HitPair(timestamp, 1));
+        }
     }
-    public int count(int no){
-        removeOldEntries();
+    /** Return the number of hits in the past 5 minutes.
+     @param timestamp - The current timestamp (in seconds granularity). */
+    public int getHits(int timestamp) {
+        removeOldTimestamps(timestamp);
         int count=0;
-        for(Tuple1 tuple: deque){
-            //deque.peekFirst().val
-            if(tuple.val == no){
-                count++;
-            }
+        for(HitPair hitCounter: deque){
+            count+= hitCounter.count;
         }
         return count;
     }
 
-    public static void main(String[] args) {
-
-        HitCounter hitCounter = new HitCounter();
-        hitCounter.put(2);
-        hitCounter.put(2);
-        hitCounter.put(3);
-        hitCounter.put(4);
-        int cnt = hitCounter.count(2); //retunr count as 2
-        System.out.println(cnt);
-        hitCounter.put(5);
-        hitCounter.put(5);
-        hitCounter.put(2);
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    private void removeOldTimestamps(int currentTimestamp){
+        while(!deque.isEmpty() && currentTimestamp - deque.peekFirst().time >= timeWindow){
+                deque.removeFirst();
         }
-        int cnt1=hitCounter.count(2); //should return count as 0
-        System.out.println(cnt1);
-
     }
 }
-/**
- * Overall Time Complexity:
- * put(int no): O(n) in the worst case due to the removeOldEntries() method.
- * count(int no): O(n) in the worst case due to both removeOldEntries() and counting through the deque.
- */
