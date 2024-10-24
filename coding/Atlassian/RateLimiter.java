@@ -1,7 +1,7 @@
 package coding.Atlassian;
 
 import java.util.HashMap;
-
+//Fixed window algo: TC - O(1)
 class RateLimit {
 
     int allowedInterval;
