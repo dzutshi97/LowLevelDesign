@@ -17,6 +17,7 @@ public class Subscriber {
         this.topic = topic;
         this.executor = Executors.newFixedThreadPool(3);
         addSubscriberToTopic(topic);
+        // note: start() should be invoked here!!
     }
     private void addSubscriberToTopic(Topic topic){
         topic.getSubscribers().add(this);
