@@ -35,7 +35,7 @@ import java.util.Map;
       public LRUCache(int capacity) {
           this.capacity = capacity;
           head.next = tail;
-          tail.next = head;
+          tail.prev = head;
       }
 
     /**
