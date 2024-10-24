@@ -7,8 +7,9 @@ public class Player {
     private char symbol;
     private MoveStrategy moveStrategy;
 
-    public void makeNextMove(MoveStrategy moveStrategy){
+    public int[] makeNextMove(MoveStrategy moveStrategy){
         int[] pos = moveStrategy.getNextMove();
+        return pos;
     }
 
     public char getSymbol() {
