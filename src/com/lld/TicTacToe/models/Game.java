@@ -15,63 +15,69 @@ public class Game {
         this.currentPlayer = currentPlayer;
     }
 
-    public boolean isWinner(Player currentPlayer){
-        //logic to check for winner in row, col, diag & cross diagonal
-        boolean rowWin= true;
-        //check in all rows
-        for(int row = 0; row<board.board.length; row++) {
-            for (int col = 0; col < board.board[0].length; col++) {
-                if (board.board[row][col] != currentPlayer.getSymbol()) {
-                    rowWin = false;
-                    break;
-                }
-            }
-        }
-        if(rowWin){
-            isGameOver = true;
-            return true;
-        }
-        //check in all cols
-        boolean colWin = true;
-        for(int col=0; col<board.board[0].length; col++){
-            for(int row=0; row<board.board.length; row++){
-                if(board.board[row][col] != currentPlayer.getSymbol()){
-                    colWin = false;
-                    break;
-                }
-            }
-        }
-        if(colWin){
-            isGameOver = true;
-            return true;
-        }
-        //check in daig
-        boolean diagWon = true;
-        for(int i=0; i<board.board.length; i++){
-            if(board.board[i][i] != currentPlayer.getSymbol()){
-                diagWon = false;
-                break;
-            }
-        }
-        if(diagWon){
-            isGameOver = true;
-            return true;
-        }
+   public boolean isWinner(Player currentPlayer) {
+    char symbol = currentPlayer.getSymbol();
+    int n = board.board.length;
 
-        //check in cross-diag
-        boolean crossDiagWon= true;
-        for(int i=0; i<board.board.length; i++){
-            if(board.board[i][board.board.length - i - 1] != currentPlayer.getSymbol()){
-                crossDiagWon = false;
+    // Check rows
+    for (int row = 0; row < n; row++) {
+        boolean rowWin = true;
+        for (int col = 0; col < n; col++) {
+            if (board.board[row][col] != symbol) {
+                rowWin = false;
                 break;
             }
         }
-        if(crossDiagWon){
+        if (rowWin) {
             isGameOver = true;
             return true;
         }
-        return false;
     }
+
+    // Check columns
+    for (int col = 0; col < n; col++) {
+        boolean colWin = true;
+        for (int row = 0; row < n; row++) {
+            if (board.board[row][col] != symbol) {
+                colWin = false;
+                break;
+            }
+        }
+        if (colWin) {
+            isGameOver = true;
+            return true;
+        }
+    }
+
+    // Check main diagonal
+    boolean diagWin = true;
+    for (int i = 0; i < n; i++) {
+        if (board.board[i][i] != symbol) {
+            diagWin = false;
+            break;
+        }
+    }
+    if (diagWin) {
+        isGameOver = true;
+        return true;
+    }
+
+    // Check anti-diagonal
+    boolean antiDiagWin = true;
+    for (int i = 0; i < n; i++) {
+        if (board.board[i][n - i - 1] != symbol) {
+            antiDiagWin = false;
+            break;
+        }
+    }
+    if (antiDiagWin) {
+        isGameOver = true;
+        return true;
+    }
+
+    return false;
+}
+
 
     public void switchPlayer(){
         if(players.get(0) == currentPlayer){
