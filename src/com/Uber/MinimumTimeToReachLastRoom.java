@@ -1,3 +1,12 @@
+/**
+
+The given code is an implementation of Dijkstra's Algorithm to find the minimum time required to traverse a 2D grid (moveTime) from the top-left corner to the bottom-right corner. Here's the analysis of its time complexity:
+O((n×m)⋅log(n×m)).
+PQ - log(n*m)
+Total Time Complexity:
+
+O((n×m)⋅log(n×m)), as the priority queue operations dominate the grid traversal.
+**/
 class Solution {
     int[][] dirs = new int[][]{{1,0}, {-1,0}, {0,-1},{0,1}};
     public int minTimeToReach(int[][] moveTime) {
