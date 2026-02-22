@@ -21,6 +21,7 @@ public class ParkingLotService {
                 parkingLot = createParkingLot(location, name, noOfFloors);
             return parkingLot;
     }
+    //singleton design pattern - https://refactoring.guru/design-patterns/singleton/java/example#example-2
 
     public ParkingLot createParkingLot(String location,String name, int noOfFloors){
 
