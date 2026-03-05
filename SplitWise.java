@@ -1,6 +1,7 @@
 //https://github.com/PiyushRajmsit/SplitWise/blob/main/src/com/splitwise/expense/Utils.java
 
-// OR refer entity design of Split & Expense from above link & below service class code. See Option 2 solution which is more easier & cleaner
+// OR refer entity design of Split & Expense from above link & below service class code. 
+// See Option 2 solution which is more easier & cleaner - Strategy pattern one !
 
 // Option 1: Use a Map to Pass User Shares
 // ExpenseService.java
@@ -153,7 +154,15 @@ public abstract class Expense  {
     private List<Split> splitList;
     private String expenseName;
 }
+//User.java
+public class User {
 
+    private String name;
+    private String email;
+    private String phoneNumber;
+    private double totalBalance;
+    private List<Expense> expenseList;
+}
 
 // Strategy pattern followed -
 // Strategy Interface
