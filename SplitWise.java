@@ -1,6 +1,6 @@
 //https://github.com/PiyushRajmsit/SplitWise/blob/main/src/com/splitwise/expense/Utils.java
 
-// OR refer entity design of Split & Expense from above link & below service class code. See Option 2 solution which is more easier
+// OR refer entity design of Split & Expense from above link & below service class code. See Option 2 solution which is more easier & cleaner
 
 // Option 1: Use a Map to Pass User Shares
 // ExpenseService.java
@@ -132,4 +132,22 @@ public void addExpense(ExpenseRequest request) {
             addPercentExpense(request);
             break;
     }
+}
+
+//Split.java - 
+public abstract class Split {
+
+    final private SplitType splitType;
+    private User user;
+    private double amount;
+}
+//Expense.java - 
+public abstract class Expense  {
+
+    private Double totalAmount;
+    final private ExpenseType expenseType;
+    private User paidBy;
+    private User createdBy;
+    private List<Split> splitList;
+    private String expenseName;
 }
