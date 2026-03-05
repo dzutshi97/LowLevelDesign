@@ -13,7 +13,7 @@ public void addEqualExpense(String expenseName, Double totalAmount, Long paidByU
     Double eachShare = totalAmount / userIds.size();
     for (Long userId : userIds) {
         User user = bookKeeper.getUser(userId);
-        splitList.add(new EqualSplit(user, eachShare));
+        splitList.add(new EqualSplit(user, eachShare)); // the Liskov Substitution Principle
     }
     
     Expense expense = new EqualExpense(totalAmount, paidBy, createdBy, splitList, expenseName);
@@ -29,7 +29,9 @@ public void addExactExpense(String expenseName, Double totalAmount, Long paidByU
     for (Map.Entry<Long, Double> entry : userShares.entrySet()) {
         User user = bookKeeper.getUser(entry.getKey());
         Double share = entry.getValue();
-        splitList.add(new ExactSplit(user, share));
+        splitList.add(new ExactSplit(user, share)); //No, this specific line doesn't represent the Strategy Pattern - it's actually demonstrating Polymorphism 
+      //(or more specifically, the Liskov Substitution Principle from SOLID).
+
     }
     
     Expense expense = new ExactExpense(totalAmount, paidBy, createdBy, splitList, expenseName);
@@ -46,7 +48,7 @@ public void addPercentExpense(String expenseName, Double totalAmount, Long paidB
         User user = bookKeeper.getUser(entry.getKey());
         Double percent = entry.getValue();
         Double userShare = Utils.getAmountFromPercent(totalAmount, percent);
-        splitList.add(new PercentSplit(user, userShare, percent));
+        splitList.add(new PercentSplit(user, userShare, percent)); // the Liskov Substitution Principle
     }
     
     Expense expense = new PercentExpense(totalAmount, paidBy, createdBy, splitList, expenseName);
@@ -151,3 +153,58 @@ public abstract class Expense  {
     private List<Split> splitList;
     private String expenseName;
 }
+
+
+// Strategy pattern followed -
+// Strategy Interface
+public interface SplitStrategy {
+    List<Split> calculateSplits(Double totalAmount, List<User> users, Map<Long, Double> shares);
+}
+
+// Concrete Strategies
+public class EqualSplitStrategy implements SplitStrategy {
+    @Override
+    public List<Split> calculateSplits(Double totalAmount, List<User> users, Map<Long, Double> shares) {
+        Double eachShare = totalAmount / users.size();
+        return users.stream()
+            .map(user -> new EqualSplit(user, eachShare))
+            .collect(Collectors.toList());
+    }
+}
+
+public class ExactSplitStrategy implements SplitStrategy {
+    @Override
+    public List<Split> calculateSplits(Double totalAmount, List<User> users, Map<Long, Double> shares) {
+        return shares.entrySet().stream()
+            .map(e -> new ExactSplit(getUserById(e.getKey()), e.getValue()))
+            .collect(Collectors.toList());
+    }
+}
+
+public class PercentSplitStrategy implements SplitStrategy {
+    @Override
+    public List<Split> calculateSplits(Double totalAmount, List<User> users, Map<Long, Double> shares) {
+        return shares.entrySet().stream()
+            .map(e -> {
+                Double amount = Utils.getAmountFromPercent(totalAmount, e.getValue());
+                return new PercentSplit(getUserById(e.getKey()), amount, e.getValue());
+            })
+            .collect(Collectors.toList());
+    }
+}
+
+// Context - ExpenseService uses the strategy
+public class ExpenseService {
+    
+    public void addExpense(String name, Double total, User paidBy, User createdBy,
+                          List<User> users, Map<Long, Double> shares, 
+                          SplitStrategy strategy) {  // Strategy injected
+        
+        List<Split> splits = strategy.calculateSplits(total, users, shares);
+        // ... create expense
+    }
+}
+
+// Usage in Main.java
+expenseService.addExpense("Dinner", 300.0, paidBy, createdBy, 
+                          users, shares, new EqualSplitStrategy());
