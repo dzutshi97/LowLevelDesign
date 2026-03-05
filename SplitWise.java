@@ -217,3 +217,10 @@ public class ExpenseService {
 // Usage in Main.java
 expenseService.addExpense("Dinner", 300.0, paidBy, createdBy, 
                           users, shares, new EqualSplitStrategy());
+
+// add custom exception in exception package e.g: IllegalExpenseType.java -
+public class IllegalExpenseType extends Exception{
+    public IllegalExpenseType(String message) {
+        super(message);
+    }
+}
