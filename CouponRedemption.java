@@ -1,4 +1,10 @@
 /**
+
+Design a service for managing coupons and scratch cards, focusing on user interaction and backend processes.
+User Registration: Users can create accounts to manage their coupons and scratch cards.
+Coupon Creation: Admins can create coupons with attributes like discount percentage, expiration date, and usage limits.
+Scratch Card Generation: Users can receive scratch cards that reveal discounts or prizes when scratched.
+Redemption Process: Users can redeem coupons or scratch card prizes through a simple interface.
 ┌─────────────────────────────────────────────────────────────────┐
 │                        STRATEGY PATTERN                          │
 │  ┌──────────────────┐                                           │
