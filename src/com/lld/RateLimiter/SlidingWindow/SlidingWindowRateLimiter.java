@@ -99,8 +99,8 @@ public class SlidingWindowRateLimiter {
         String client3 = "client3";
 
         for (int i = 1; i <= 3; i++) {
-            final int requestId = i;
-            executorService.submit(() -> {
+            final int requestId = i; 
+            executorService.submit(() -> { //Actually, we ARE passing a Runnable! The lambda () -> ... is a Runnable.
                 System.out.println("Client 2, Request " + requestId + " allowed: " + rateLimiter.isAllow(client2));
                 System.out.println("Client 3, Request " + requestId + " allowed: " + rateLimiter.isAllow(client3));
             });
