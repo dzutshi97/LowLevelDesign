@@ -94,3 +94,28 @@ public class WordSearch2 {
         wordSearch2.solve(input,words);
     }
 }
+
+/**
+TC - 
+1. Trie Construction
+
+You mentioned O(length of longest word). But consider: how many words are being inserted into the Trie?
+If there are W words and each has max length L, what's the total work to build the Trie?
+2. Board Traversal + Backtracking
+
+You mentioned O(M × N) for board positions. That's the starting points, correct!
+But from each starting cell, what happens during the search() call?
+How many recursive calls can happen in the worst case?
+What's the maximum depth of recursion? (Think about the longest word)
+At each level, how many branches (directions) are explored?
+3. Key Insight
+
+Without the Trie, each starting cell could explore up to 4^L paths (4 directions, depth L)
+With the Trie, many paths get pruned early. But what's the worst case scenario?
+When would the Trie NOT help prune much?
+Try to answer:
+
+Trie build: O(? × ?)
+Search from one cell: O(?^?) in worst case
+Total: Starting cells × Search per cell + Trie build
+**/
